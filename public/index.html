@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Recommendation System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fas fa-globe-americas"></i>
+            <span>TravelEase</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#destinations">Destinations</a></li>
+            <li><a href="#restaurants">Restaurants</a></li>
+            <li><a href="#social">Social</a></li>
+            <li class="login-link"><a href="#" onclick="showLoginForm()">Login</a></li>
+            <li class="register-link"><a href="#" onclick="showRegisterForm()">Register</a></li>
+        </ul>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Discover Your Perfect Destination</h1>
+            <p>Find the best travel spots based on your preferences</p>
+            <button onclick="showPreferenceForm()" class="cta-button">Get Started</button>
+        </div>
+    </section>
+
+    <section id="preferences" class="preference-section">
+        <h2>Tell Us Your Preferences</h2>
+        <form id="travel-preferences" class="preference-form">
+            <div class="form-group">
+                <label for="travel-type">Travel Type</label>
+                <select id="travel-type" required>
+                    <option value="">Select Type</option>
+                    <option value="Adventure">Adventure</option>
+                    <option value="Relaxation">Relaxation</option>
+                    <option value="Cultural">Cultural</option>
+                    <option value="Beach">Beach</option>
+                    <option value="Mountain">Mountain</option>
+                    <option value="City">City</option>
+                    <option value="Wildlife">Wildlife</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="budget">Budget Range</label>
+                <select id="budget" required>
+                    <option value="">Select Budget</option>
+                    <option value="Budget">Budget</option>
+                    <option value="Moderate">Moderate</option>
+                    <option value="Luxury">Luxury</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="season">Season</label>
+                <select id="season" required>
+                    <option value="">Select Season</option>
+                    <option value="Spring">Spring</option>
+                    <option value="Summer">Summer</option>
+                    <option value="Fall">Fall</option>
+                    <option value="Winter">Winter</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="travel-style">Travel Style</label>
+                <select id="travel-style" required>
+                    <option value="">Select Style</option>
+                    <option value="Individual">Individual</option>
+                    <option value="Group">Group</option>
+                    <option value="Family">Family</option>
+                    <option value="Couple">Couple</option>
+                </select>
+            </div>
+            <button type="submit" class="submit-button">Find Destinations</button>
+        </form>
+    </section>
+
+    <section id="destinations" class="destinations-section">
+        <h2>Recommended Destinations</h2>
+        <div id="destinations-grid" class="destinations-grid"></div>
+    </section>
+
+    <section id="restaurants" class="restaurants-section">
+        <h2>Popular Restaurants</h2>
+        <div id="restaurants-grid" class="restaurants-grid"></div>
+    </section>
+
+    <section id="social" class="social-section">
+        <h2>Travel Community</h2>
+        <div class="social-container">
+            <div class="friends-section">
+                <h3>Travel Buddies</h3>
+                <div id="friends-list" class="friends-list"></div>
+                <button onclick="showAddFriendForm()" class="add-friend-btn">Add Friend</button>
+            </div>
+            <div class="groups-section">
+                <h3>Travel Groups</h3>
+                <div id="groups-list" class="groups-list"></div>
+                <button onclick="showCreateGroupForm()" class="create-group-btn">Create Group</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('login-modal')">&times;</span>
+            <h2>Login</h2>
+            <form id="login-form" onsubmit="loginUser(event)">
+                <div class="form-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" required>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="register-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('register-modal')">&times;</span>
+            <h2>Register</h2>
+            <form id="register-form" onsubmit="registerUser(event)">
+                <div class="form-group">
+                    <label for="register-username">Username</label>
+                    <input type="text" id="register-username" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-email">Email</label>
+                    <input type="email" id="register-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-password">Password</label>
+                    <input type="password" id="register-password" required>
+                </div>
+                <button type="submit">Register</button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About TravelEase</h3>
+                <p>Your perfect travel companion for discovering amazing destinations around the world.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#destinations">Destinations</a></li>
+                    <li><a href="#restaurants">Restaurants</a></li>
+                    <li><a href="#social">Social</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: info@travelease.com</p>
+                <p>Phone: +1 234 567 890</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 TravelEase. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 
